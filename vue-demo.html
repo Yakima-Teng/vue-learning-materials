@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="vueBox">
+        <header class="header">{{title}}</header>
+        <article class="article">数字甲{{number1}}和数字乙{{number2}}的和为{{sum}}。</article>
+        <button v-on:click="increaseNumberBy1('number1')" class="button">增加数字甲的值</button>
+        <button @click="increaseNumberBy1('number2')" class="button">增加数字乙的值</button>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+          el: '#vueBox',
+          data: {
+            title: 'Hello Vue!',
+            number1: 10,
+            number2: 20
+          },
+          computed: {
+            sum: function () {
+              return this.number1 + this.number2
+            }
+          },
+          methods: {
+            increaseNumberBy1: function (numberAlias) {
+              this[numberAlias]++
+            }
+          },
+          mounted: function () {
+            var _this = this
+            setTimeout(function () {
+              _this.title = '你好，vue！'
+            }, 3000)
+          }
+        })
+    </script>
+</body>
+</html>
